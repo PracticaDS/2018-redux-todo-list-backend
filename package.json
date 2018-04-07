@@ -1,0 +1,19 @@
+{
+  "name": "2018-redux-todo-list-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Javier Fernandes <javier.fernandes@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "babel-node index.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0"
+  }
+}
