@@ -5,7 +5,7 @@
   "author": "Javier Fernandes <javier.fernandes@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "nodemon --exec babel-node index.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -14,6 +14,10 @@
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.10.0",
-    "eslint-plugin-jest": "^21.15.0"
+    "eslint-plugin-jest": "^21.15.0",
+    "nodemon": "^1.17.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
