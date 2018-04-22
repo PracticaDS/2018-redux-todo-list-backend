@@ -1,5 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import uuid from 'uuid/v4'
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -8,9 +9,9 @@ app.use(bodyParser.json())
 //
 
 const initialState = [
-  { id: 0, text: 'Comprar verduras', done: false },
-  { id: 1, text: 'Sacar turno con el doctor', done: false },
-  { id: 2, text: 'Actualizar partida de nacimiento', done: false },
+  { id: uuid(), text: 'Comprar verduras', done: false },
+  { id: uuid(), text: 'Sacar turno con el doctor', done: false },
+  { id: uuid(), text: 'Actualizar partida de nacimiento', done: false },
 ]
 
 let items = initialState
@@ -31,7 +32,10 @@ app.delete('/todos/:id', (req, res) => {
 
 app.post('/todos', (req, res) => {
   const item = req.body
-  items = items.concat(item)
+  items = items.concat({
+    id: uuid(),
+    ...item,
+  })
   res.send(ok)
 })
 
