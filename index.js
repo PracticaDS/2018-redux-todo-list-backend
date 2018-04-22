@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import uuid from 'uuid/v4'
+import { update } from 'ramda'
 
 const app = express()
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,19 +25,30 @@ app.post('/reset', (req, res) => {
   res.send(ok)
 })
 
+app.put('/todos/:id', (req, res) => {
+  const { id } = req.params
+  const item = req.body
+  items = update(items.findIndex(_ => _.id === id), item, items)
+  res.send(ok)
+})
+
 app.delete('/todos/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10)
+  const { id } = req.params
   items = items.filter(i => i.id !== id)
   res.send(ok)
 })
 
 app.post('/todos', (req, res) => {
   const item = req.body
-  items = items.concat({
+  const updatedItem = {
     id: uuid(),
     ...item,
+  }
+  items = items.concat(updatedItem)
+  res.send({
+    ...ok,
+    data: updatedItem,
   })
-  res.send(ok)
 })
 
 const port = 3001
