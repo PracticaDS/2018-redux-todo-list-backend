@@ -56,6 +56,13 @@ export default broadCastEvent => {
       ...item,
     }
     items = items.concat(updatedItem)
+
+    broadCastEvent({
+      type: 'ADDED',
+      item: updatedItem,
+      from: req.get('UserId'),
+    })
+
     res.send({
       ...ok,
       data: updatedItem,
