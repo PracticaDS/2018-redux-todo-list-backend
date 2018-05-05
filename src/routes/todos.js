@@ -1,48 +1,37 @@
-import uuid from 'uuid/v4'
-import { update } from 'ramda'
 import { Router } from 'express'
+import mongoose from 'mongoose'
+
+const Todo = mongoose.model('Todo')
 
 const router = Router()
 
-const initialState = [
-  { id: uuid(), text: 'Comprar verduras', done: false },
-  { id: uuid(), text: 'Sacar turno con el doctor', done: false },
-  { id: uuid(), text: 'Actualizar partida de nacimiento', done: false },
-]
-
-let items = initialState
-
 const ok = { status: 'ok' }
 
-router.get('/todos', (req, res) => res.send(items))
-router.post('/reset', (req, res) => {
-  items = initialState
+router.get('/todos', async (req, res) => res.send(await Todo.find({})))
+router.post('/reset', async (req, res) => {
+  await Todo.remove({})
   res.send(ok)
 })
 
-router.put('/todos/:id', (req, res) => {
+router.put('/todos/:id', async (req, res) => {
   const { id } = req.params
   const item = req.body
-  items = update(items.findIndex(_ => _.id === id), item, items)
+  await Todo.update({ _id: id }, item)
   res.send(ok)
 })
 
-router.delete('/todos/:id', (req, res) => {
+router.delete('/todos/:id', async (req, res) => {
   const { id } = req.params
-  items = items.filter(i => i.id !== id)
+  await Todo.remove({ _id: id })
   res.send(ok)
 })
 
-router.post('/todos', (req, res) => {
+router.post('/todos', async (req, res) => {
   const item = req.body
-  const updatedItem = {
-    id: uuid(),
-    ...item,
-  }
-  items = items.concat(updatedItem)
+  const data = await Todo.create([item])
   res.send({
     ...ok,
-    data: updatedItem,
+    data,
   })
 })
 
