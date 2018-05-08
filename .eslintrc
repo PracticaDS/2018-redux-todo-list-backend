@@ -14,7 +14,8 @@
   "rules": {
     "semi": 0,
     "padded-blocks": 0,
-    "comma-dangle": 0
+    "comma-dangle": 0,
+    "function-paren-newline": 0
   }
  }
  

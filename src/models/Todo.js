@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const schema = new Schema({
   text: { type: String, required: true },
-  done: Boolean,
+  done: { type: Boolean, default: false },
 })
 
 mongoose.model('Todo', schema)
