@@ -30,12 +30,14 @@ describe('Model - Todo', () => {
       }
     })
 
-    it('debe guardar uno bien :)', async () => {
+    it('debe setear done en false por defecto', async () => {
       const saved = await new Todo({ text: 'do something' }).save()
       expect(saved).toMatchObject({
         _id: expect.any(ObjectId),
         __v: 0,
+        done: false
       })
+      expect(await Todo.count()).toEqual(1)
     })
 
   })

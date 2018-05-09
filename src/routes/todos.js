@@ -8,10 +8,6 @@ const router = Router()
 const ok = { status: 'ok' }
 
 router.get('/todos', async (req, res) => res.send(await Todo.find({})))
-router.post('/reset', async (req, res) => {
-  await Todo.remove({})
-  res.send(ok)
-})
 
 router.put('/todos/:id', async (req, res) => {
   const { id } = req.params

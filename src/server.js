@@ -1,8 +1,10 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
+
 import mongoose from 'mongoose'
 import './models/Todo'
+
 import todos from './routes/todos'
 
 mongoose.connect('mongodb://localhost/pdes-todos')
@@ -14,5 +16,11 @@ app.use(bodyParser.json())
 
 //
 app.use(todos)
+
+app.use((err, req, res) => {
+  const { message, stack } = err
+  res.status(500).send({ status: 'error', message, stack })
+})
+
 
 export default app
