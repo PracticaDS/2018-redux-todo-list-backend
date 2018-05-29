@@ -22,6 +22,11 @@ router.delete('/todos/:id', async (req, res) => {
   res.send(ok)
 })
 
+router.delete('/todos', async (req, res) => {
+  await Todo.remove({})
+  res.send(ok)
+})
+
 router.post('/todos', async (req, res) => {
   const item = req.body
   const data = await Todo.create([item])
