@@ -1,7 +1,8 @@
 
-import app from './src/server'
+import start from './src/server'
 
 const port = 3001
-app.listen(port, () => {
+
+start().listen(port, () => {
   console.log(`TODO list backend listening on port ${port}!`)
 })
