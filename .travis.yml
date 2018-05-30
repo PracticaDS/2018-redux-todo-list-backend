@@ -3,4 +3,4 @@ node_js:
 - "9"
 
 script:
-- yarn test
+- yarn test:ci

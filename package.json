@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "jest --runInBand --watch"
+    "test": "jest --runInBand --watch",
+    "test:ci": "jest --runInBand --ci --forceExit"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
