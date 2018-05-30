@@ -6,7 +6,9 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
-    "test": "jest --runInBand --watch"
+    "linter": "eslint src",
+    "test": "jest --runInBand --watch",
+    "test:ci": "jest --runInBand --ci --forceExit"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -29,5 +31,8 @@
     "morgan": "^1.9.0",
     "ramda": "^0.25.0",
     "uuid": "^3.2.1"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./jest.setup.js"
   }
 }

@@ -2,12 +2,19 @@ import mongoose from 'mongoose'
 import { Mockgoose } from 'mockgoose'
 import request from 'supertest'
 
-import app from '../server'
+import start from '../server'
 
 const mockgoose = new Mockgoose(mongoose)
 const Todo = mongoose.model('Todo')
 
+
 describe('Routes - Todo', () => {
+
+  let app;
+
+  beforeEach(() => {
+    app = start();
+  })
 
   beforeAll(async () => {
     await mockgoose.prepareStorage()
