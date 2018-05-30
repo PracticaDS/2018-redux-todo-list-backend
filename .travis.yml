@@ -3,4 +3,5 @@ node_js:
 - "9"
 
 script:
+- yarn linter
 - yarn test:ci

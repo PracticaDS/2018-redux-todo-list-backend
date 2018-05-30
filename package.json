@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
+    "linter": "eslint src",
     "test": "jest --runInBand --watch",
     "test:ci": "jest --runInBand --ci --forceExit"
   },
