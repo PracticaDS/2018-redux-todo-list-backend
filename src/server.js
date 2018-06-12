@@ -8,6 +8,9 @@ import './models/Todo'
 import todos from './routes/todos'
 
 const start = () => {
+  if (!process.env.MONGO_URL) {
+    throw new Error('No mongo url configured, set MONGO_URL env var');
+  }
   mongoose.connect(process.env.MONGO_URL)
 
   const app = express()
