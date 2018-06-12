@@ -8,7 +8,7 @@ import './models/Todo'
 import todos from './routes/todos'
 
 const start = () => {
-  mongoose.connect('mongodb://localhost/pdes-todos')
+  mongoose.connect(process.env.MONGO_URL)
 
   const app = express()
   app.use(morgan('combined'))
