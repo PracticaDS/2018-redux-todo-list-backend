@@ -1,7 +1,22 @@
+sudo: required
 language: node_js
 node_js:
-- "9"
+  - "9"
+services:
+  - docker
+
+before_install:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - yarn install
 
 script:
-- yarn linter
-- yarn test:ci
+  - yarn linter
+  - yarn test:ci
+  - yarn build:docker
+
+deploy:
+  provider: script
+  script: docker push unqpdes/todo-list-back
+  on:
+    branch: dockerized
+

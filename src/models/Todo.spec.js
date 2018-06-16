@@ -34,7 +34,6 @@ describe('Model - Todo', () => {
       const saved = await new Todo({ text: 'do something' }).save()
       expect(saved).toMatchObject({
         _id: expect.any(ObjectId),
-        __v: 0,
         done: false
       })
       expect(await Todo.count()).toEqual(1)
