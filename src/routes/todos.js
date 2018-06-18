@@ -7,6 +7,8 @@ const router = Router()
 
 const ok = { status: 'ok' }
 
+router.get('/', (req, res) => res.send(ok))
+
 router.get('/todos', async (req, res) => res.send(await Todo.find({})))
 
 router.put('/todos/:id', async (req, res) => {
