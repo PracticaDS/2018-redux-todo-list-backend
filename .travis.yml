@@ -26,9 +26,9 @@ script:
 deploy:
   provider: script
   script: 
-    # push to dockerhub
+    # push to dockerhub & heroku
     docker push unqpdes/todo-list-back;
-    docker push registry.heroku.com/$HEROKU_APP/web
-    # heroku container:release web --app pdes-2018-todo-list-back
+    docker push registry.heroku.com/$HEROKU_APP/web;
+    heroku container:release web --app $HEROKU_APP
   on:
     branch: master
