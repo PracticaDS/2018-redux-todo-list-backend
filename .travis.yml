@@ -21,7 +21,7 @@ script:
   - yarn test:ci
   # build docker images
   - yarn build:docker
-  - docker tag unqpdes/todo-list-back:latest registry.heroku.com/"$HEROKU_APP"/web
+  - docker tag unqpdes/todo-list-back:latest registry.heroku.com/pdes-2018-todo-list-back/web
 
 deploy:
   provider: script
@@ -29,7 +29,7 @@ deploy:
     # push to dockerhub
     docker push unqpdes/todo-list-back;
     # push & release in heroku
-    docker push registry.heroku.com/"$HEROKU_APP"/web;
-    heroku container:release web --app "$HEROKU_APP"
+    docker push registry.heroku.com/pdes-2018-todo-list-back/web;
+    heroku container:release web --app pdes-2018-todo-list-back
   on:
     branch: master
