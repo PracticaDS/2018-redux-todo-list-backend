@@ -1,6 +1,7 @@
 FROM node:9-alpine
 
-RUN npm install --global yarn
+# this makes the build fail in travis (with permission denied to run yarn)
+# RUN npm install --global yarn
 
 COPY package.json .
 COPY yarn.lock .
