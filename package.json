@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon --exec babel-node index.js",
+    "start-prod": "babel-node index.js",
     "build:docker": "docker build -t unqpdes/todo-list-back .",
     "linter": "eslint src",
     "test": "jest --runInBand --watch",
