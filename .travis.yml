@@ -7,10 +7,10 @@ services:
 
 before_install:
   # install heroku CLI
-  - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+  # - wget -qO- https://toolbelt.heroku.com/install.sh | sh
   # login to docker registries (dockerhub + heroku)
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
+  # - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 install:
   # install deps
@@ -21,15 +21,15 @@ script:
   - yarn test:ci
   # build docker images
   - yarn build:docker
-  - docker tag unqpdes/todo-list-back:latest registry.heroku.com/pdes-2018-todo-list-back/web
+  # - docker tag unqpdes/todo-list-back:latest registry.heroku.com/pdes-2018-todo-list-back/web
 
 deploy:
   provider: script
   script: 
     # push to dockerhub
     docker push unqpdes/todo-list-back;
-    # push & release in heroku
-    docker push registry.heroku.com/pdes-2018-todo-list-back/web;
-    heroku container:release web --app pdes-2018-todo-list-back
+    # # push & release in heroku
+    # docker push registry.heroku.com/pdes-2018-todo-list-back/web;
+    # heroku container:release web --app pdes-2018-todo-list-back
   on:
     branch: master
