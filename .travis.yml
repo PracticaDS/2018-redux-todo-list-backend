@@ -28,7 +28,6 @@ deploy:
   script: 
     # push to dockerhub
     docker push unqpdes/todo-list-back;
-    # push & release in heroku
     docker push registry.heroku.com/$HEROKU_APP/web
     # heroku container:release web --app pdes-2018-todo-list-back
   on:
