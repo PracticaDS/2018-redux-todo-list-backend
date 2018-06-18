@@ -13,6 +13,7 @@ before_install:
   - echo "$HEROKU_PASSWORD" | docker login -u "$HEROKU_USERNAME" --password-stdin registry.heroku.com
 
 install:
+  # install deps
   - yarn install
 
 script:
@@ -24,7 +25,7 @@ script:
 
 deploy:
   provider: script
-  script:
+  script: 
     # push to dockerhub
     docker push unqpdes/todo-list-back;
     # push & release in heroku
